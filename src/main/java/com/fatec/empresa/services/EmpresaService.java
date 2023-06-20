@@ -1,5 +1,7 @@
 package com.fatec.empresa.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,9 @@ public class EmpresaService {
 
     public Empresa save(Empresa empresa) {
         return empresaRepository.save(empresa);
+    }
+
+    public List<Empresa> getEmpresas() {
+        return empresaRepository.findAll();
     }
 }
