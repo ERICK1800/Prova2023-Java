@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,5 +43,17 @@ public class EmpresaController {
     public ResponseEntity<List<Empresa>> getEmpresas(){
         List<Empresa> empresas = empresaService.getEmpresas();
         return ResponseEntity.ok().body(empresas);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Empresa> getEmpresa(@PathVariable int id){
+        Empresa empresa = empresaService.getEmpresaById(id);
+        return ResponseEntity.ok().body(empresa);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Empresa> deleteEmpresa(@PathVariable int id){
+        empresaService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
